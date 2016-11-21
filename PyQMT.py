@@ -50,12 +50,12 @@ class QMT(QtGui.QMainWindow):
         # Create Qtable view widget
         self.view = QtGui.QTableView(self)
         self.view.clicked.connect(self.viewClicked)
-        
+
         # Get the header to catch clicked on it
         self.header = self.view.horizontalHeader()
         self.header.sectionClicked.connect(self.headerClicked)
         self.view.setSortingEnabled(True)
-        
+
         # Create Canvas for graph
         self.fig = Figure(figsize=(5, 5), dpi=100)
         self.canvas = FigureCanvas(self.fig)
@@ -68,7 +68,7 @@ class QMT(QtGui.QMainWindow):
         self.treeView = QtGui.QTreeView(self)
         self.fileSystemModel = QtGui.QFileSystemModel(self.treeView)
         self.fileSystemModel.setReadOnly(True)
-        root = self.fileSystemModel.setRootPath('C:/Users/user11.HPO-SAMAT/Desktop/resultata')
+        root = self.fileSystemModel.setRootPath('Z:/resultats/807677')
         self.treeView.setModel(self.fileSystemModel)
         self.treeView.setRootIndex(root)
         self.treeView.clicked.connect(self.treeView_clicked)
@@ -87,21 +87,21 @@ class QMT(QtGui.QMainWindow):
         #Horizontal Layout Box
         hbox = QtGui.QVBoxLayout()
         hbox.addWidget(splitter2)
-        
+
         #initiate widget to be shown
         widget = QtGui.QWidget(self)
         widget.setLayout(hbox)
-        
+
         #Set widget as central widget
         self.setCentralWidget(widget)
-        
+
         # Windows & Menu stuff
         self.initUI()
 
-        
-    def initUI(self):               
+
+    def initUI(self):
         # GUI init
-        exitAction = QtGui.QAction(QtGui.QIcon('exit.png'), '&Exit', self)        
+        exitAction = QtGui.QAction(QtGui.QIcon('exit.png'), '&Exit', self)
         exitAction.setShortcut('Ctrl+Q')
         exitAction.setStatusTip('Exit application')
         exitAction.triggered.connect(QtGui.qApp.quit)
@@ -114,18 +114,18 @@ class QMT(QtGui.QMainWindow):
         menubar = self.menuBar()
         fileMenu = menubar.addMenu('&File')
         fileMenu.addAction(exitAction)
-        fileMenu.addAction(openFile) 
+        fileMenu.addAction(openFile)
 
         self.statusBar()
         self.setGeometry(200, 200, 400, 400)
-        self.setWindowTitle('Menubar') 
+        self.setWindowTitle('Menubar')
         self.show()
         self.view.show()
 
     def showDialog(self):
         #Used to open a file and initiate model
-        fname = QtGui.QFileDialog.getOpenFileName(self, 'Open file', 
-                'C:/Users/user11.HPO-SAMAT/Desktop/807677') 
+        fname = QtGui.QFileDialog.getOpenFileName(self, 'Open file',
+                'Z:/resultats/807677')
         return fname
 
     def viewClicked(self, clickedIndex):
@@ -185,7 +185,7 @@ class QMT(QtGui.QMainWindow):
         Calculate scrap rate of a series
         '''
         Pass
-        
+
 
 def main(args):
     app = QApplication(args)
